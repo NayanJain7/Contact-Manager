@@ -2,6 +2,7 @@ package com.smartcontactmanager.nayan.Service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
@@ -9,9 +10,12 @@ import com.smartcontactmanager.nayan.message.ReCaptchResponseType;
 
 @Service
 public class ReCaptchaValidationService {
-	private static final String GOOGLE_RECAPTCHA_ENDPOINT = "https://www.google.com/recaptcha/api/siteverify";
-    
-	private final String RECAPTCHA_SECRET = "6Le4bAAaAAAAAFkh4FIT7WJbHvDNZLplGF-ueLY3";
+	
+	@Value("GOOGLE_RECAPTCHA_ENDPOINT")
+	private static final String GOOGLE_RECAPTCHA_ENDPOINT;
+    	
+	@Value("RECAPTCHA_SECRET")
+	private final String RECAPTCHA_SECRET;
 
 	    public boolean validateCaptcha(String captchaResponse){
 	        RestTemplate restTemplate = new RestTemplate();
