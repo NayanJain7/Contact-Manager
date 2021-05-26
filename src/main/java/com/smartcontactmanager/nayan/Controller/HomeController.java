@@ -62,8 +62,7 @@ public class HomeController {
 				return "signup";
 			}
 			
-			if(validator.validateCaptcha(captcha))
-	        {    
+			   
 				user.setEnables(true);
 				user.setRole("ROLE_USER");
 			
@@ -75,10 +74,7 @@ public class HomeController {
 
 				model.addAttribute("user", new User());
 				session.setAttribute("message", new Message("Successfully Registered ", "alert-success"));
-			 }
-		     else { 
-		    	 session.setAttribute("message", new Message("Please Verify Captcha", "alert-danger"));
-		    	 }      
+		     
 
 
 
