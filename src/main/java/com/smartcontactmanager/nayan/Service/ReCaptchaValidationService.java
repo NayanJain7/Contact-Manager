@@ -12,10 +12,10 @@ import com.smartcontactmanager.nayan.message.ReCaptchResponseType;
 public class ReCaptchaValidationService {
 	
 	@Value("GOOGLE_RECAPTCHA_ENDPOINT")
-	private static final String GOOGLE_RECAPTCHA_ENDPOINT;
+	private   String GOOGLE_RECAPTCHA_ENDPOINT;
     	
 	@Value("RECAPTCHA_SECRET")
-	private final String RECAPTCHA_SECRET;
+	private  String RECAPTCHA_SECRET;
 
 	    public boolean validateCaptcha(String captchaResponse){
 	        RestTemplate restTemplate = new RestTemplate();
