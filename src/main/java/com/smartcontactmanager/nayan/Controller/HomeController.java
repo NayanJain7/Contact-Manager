@@ -66,7 +66,7 @@ public class HomeController {
 	        {    
 				user.setEnables(true);
 				user.setRole("ROLE_USER");
-				user.setImageUrl("default.png");
+			
 
 				user.setPassword(passwordEncoder.encode(user.getPassword()));
 
@@ -75,7 +75,7 @@ public class HomeController {
 
 				model.addAttribute("user", new User());
 				session.setAttribute("message", new Message("Successfully Registered ", "alert-success"));
-			 } 
+			 }
 		     else { 
 		    	 session.setAttribute("message", new Message("Please Verify Captcha", "alert-danger"));
 		    	 }      
