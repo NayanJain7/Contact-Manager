@@ -62,6 +62,10 @@
 	border-radius:50%;
 	
 }
+.active{
+	background: #009688 !important;
+	color:white !important;
+}
 
 /* Search Css */
 
@@ -75,3 +79,28 @@
 	border: 1px solid gray;
 	display:none;
 }
+/* --------------Reset Password----------------------- */
+.pass_show{position: relative} 
+
+.pass_show .ptxt { 
+
+position: absolute; 
+
+top: 50%; 
+
+right: 10px; 
+
+z-index: 1; 
+
+color: #f36c01; 
+
+margin-top: -10px; 
+
+cursor: pointer; 
+
+transition: .3s ease all; 
+
+} 
+
+.pass_show .ptxt:hover{color: #333333;} 
+

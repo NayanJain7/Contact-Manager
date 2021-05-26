@@ -24,13 +24,14 @@
 		<div class="card mx-3" th:unless="${total_contacts}==0">
 			
 			<div class="card-body" >
-				<!--Show Message start-->
+			
+					<!--Show Message start-->
 				<div class="row">
 
 					<div th:if="${session.message}"
-						th:classappend="${session.message.type}"
+						th:classappend="success"
 						class="alert my-0 col-md-6 offset-md-3 mt-2 py-0 " role="alert">
-						<P th:text="${session.message.content}" class="text-center py-2"></P>
+						<P th:text="${session.message}" class="text-center py-2"></P>
 
 						<th:block th:text="${#session.removeAttribute('message')}"></th:block>
 
@@ -38,6 +39,8 @@
 				</div>
 
 				<!--Show Message end -->
+				
+				
 				<div class="text-center">
 					<h3>Your Contacts</h3>
 					<span th:text="'Total contact is '+ ${total_contacts}"></span>
@@ -57,7 +60,8 @@
 				</div>
 				<!-- Search End -->
 				
-				<table class="table table-bordered my-auto">
+				<div class="table-responsive">
+				<table class="table table-bordered my-auto table-hover">
 					<thead>
 						<tr>
 							<th scope="col">#</th>
@@ -102,6 +106,7 @@
 									</form>
 									<button th:onClick="|deleteContact(${c.cid},${current_page})|"
 										class="btn btn-danger btn-md mt-2 ">Delete</button>
+								</div>
 							</td>
 
 							</div>
@@ -109,7 +114,9 @@
 
 					</tbody>
 				</table>
-
+				</div>
+				<!-- -----Pagination Part Started---- -->
+				
 				<nav aria-label="..." class="mt-3">
 					<ul class="pagination">
 						<li th:if="${current_page!=0}" class="page-item "><a
@@ -128,10 +135,16 @@
 							th:href="@{'/user/show_contact/'+${current_page+1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} }">Next</a></li>
 					</ul>
 				</nav>
+				
+				<!-- -----Pagination Part Ended---- -->
 
 			</div>
 		</div>
 		<script>
+		
+		
+			$(".item").removeClass("active");
+			$("#view").addClass("active");
 		
 			const deleteContact=(cID,currentPage)=>{
 				swal({

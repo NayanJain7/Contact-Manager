@@ -1,7 +1,11 @@
 package com.smartcontactmanager.nayan.Controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +16,8 @@ import com.smartcontactmanager.nayan.Dao.ContactRepository;
 import com.smartcontactmanager.nayan.Dao.UserRepository;
 import com.smartcontactmanager.nayan.Entity.Contact;
 import com.smartcontactmanager.nayan.Entity.User;
+import com.smartcontactmanager.nayan.Service.WriteToCSV;
+
 
 @RestController
 public class SearchController {
@@ -34,6 +40,31 @@ public class SearchController {
 		
 	}
 	
-
+	
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/user/download")
+	public void downloaCsvFile(Principal principal,HttpServletResponse response) throws IOException {
+		 
+		User user = userRepo.getUserByUserName(principal.getName());
+		
+		
+		response.setContentType("text/csv");
+		response.setHeader("Content-Display","attachment; file = contact.csv");
+		List<Contact> contacts = user.getContacts();
+		  
+		WriteToCSV.writeToCsv(response.getWriter(), contacts);
+		 
+		
+		  
+		
+	}
+	
+	
 	
 }

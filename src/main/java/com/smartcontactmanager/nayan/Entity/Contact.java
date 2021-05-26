@@ -1,11 +1,8 @@
 package com.smartcontactmanager.nayan.Entity;
 
-
-
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="CONTACT")
 public class Contact {
 
 		@Id
@@ -27,8 +23,9 @@ public class Contact {
 		private String image;
 		private String description;
 		
-		@ManyToOne
+		
 		@JsonIgnore
+		@ManyToOne
 		private User user;
 		
 		@Override

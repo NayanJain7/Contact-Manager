@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +43,10 @@ public class UserController {
 
 	@Autowired
 	private ContactRepository contactRepo;
+	
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	// Method for add common data in all handlers
 	@ModelAttribute
@@ -309,6 +313,36 @@ public class UserController {
 		
 		userRepo.delete(user); 
 		return"redirect:/signup";
+		
+	}
+	
+	
+	// handle user setting page
+	
+	@GetMapping("/setting")
+	public String userSetting() {
+		return "normal/user_setting";
+	}
+	
+	@GetMapping("/changePass")
+	public String userSetting(@RequestParam("oldPassword") String oldPass,@RequestParam("newPassword") String newPass,Principal principal, HttpSession session ) {
+		
+		String username = principal.getName();
+		User user = userRepo.getUserByUserName(username);
+		
+		if(passwordEncoder.matches(oldPass, user.getPassword())) {
+			
+			user.setPassword(passwordEncoder.encode(newPass));
+			userRepo.save(user);
+			session.setAttribute("message", new Message("Your password is changed Successfully!!", "alert-success"));
+			return"signin";
+		}
+		
+		else {
+			session.setAttribute("message", new Message("Your password is incorrect!!", "alert-danger"));
+			return"redirect:/user/setting";
+
+		}
 		
 	}
 	

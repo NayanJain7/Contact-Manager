@@ -35,8 +35,8 @@
 
 					</div>
 					<!--Show Message End-->
-					
-					
+
+
 					<h4 class="pb-4">Please fill with your details</h4>
 					<form th:action="@{/do_register}" method="post" th:object="${user}">
 						<div class="form-row">
@@ -88,25 +88,26 @@
 
 
 							<div class="form-group col-md-6">
-							<div class="input-group">
-								<select class="form-control" id="sel1" name="question" required="required">
-									<option selected="true" disabled="disabled">Please
-										Select Security Question</option>
-									<option>Which is your favorite movie?</option>
-									<option>What is your pet's name?</option>
-									<option>What is the name of your village?</option>
-								</select>
-							</div>
+								<div class="input-group">
+									<select class="form-control" id="sel1" name="question"
+										required="required">
+										<option selected="true" disabled="disabled">Please
+											Select Security Question</option>
+										<option>Which is your favorite movie?</option>
+										<option>What is your pet's name?</option>
+										<option>What is the name of your village?</option>
+									</select>
+								</div>
 							</div>
 
 							<div class="form-group col-md-6">
-							<div class="form-group">
-								<div class="input-group">
-									<input id="forgetAnswer" name="answer"
-										placeholder="Secutity Answer" class="form-control"
-										type="text" required="required">
+								<div class="form-group">
+									<div class="input-group">
+										<input id="forgetAnswer" name="answer"
+											placeholder="Secutity Answer" class="form-control"
+											type="text" required="required">
+									</div>
 								</div>
-							</div>
 							</div>
 
 							<div class="form-group col-md-12">
@@ -130,7 +131,20 @@
 
 							</div>
 						</div>
-						<div class="form-row text-center">
+
+						<div class="row">
+							<div class="col-12">
+								<label>VERIFY</label>
+							</div>
+							<div class="col-4">
+								<div class="g-recaptcha"
+									data-sitekey="6Le4bAAaAAAAAPdYPIUr8UU6bdHseVJbTC7CuOec">
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-row text-center mt-3">
 
 							<div class="form-row col-sm-3">
 								<button type="submit" class="btn btn-danger">Submit</button>
@@ -145,6 +159,7 @@
 				</div>
 			</div>
 		</div>
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	</section>
 
 

@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -17,13 +18,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Entity
-@Table(name="USER")
-
 @Data
+@Table(name = "user_tab")
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -43,10 +42,10 @@ public class User {
 	private String role;
 	private boolean enables;
 	private String imageUrl;
-	@Column(length = 500)
+	@Column(length = 200)
 	private String about;
 	
-	//work of orphan removal is that it remove the child entity from database whem it unlink with parent entity
+	//work of orphan removal is that it remove the child entity from database when it unlink with parent entity
 	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="user",orphanRemoval = true)
 	private List<Contact> contacts = new ArrayList<>();
 	
