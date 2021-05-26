@@ -228,12 +228,12 @@ public class UserController {
 			if (!file.isEmpty()) {
 
 				
-				  File filepath = new ClassPathResource("static/images").getFile(); 
+				  File filepath = new ClassPathResource("app/src/main/resources/static/images").getFile(); 
 				  File f = new File(filepath, oldContact.getImage());
 				  f.delete();
 				  System.out.println(f);
 
-				File savedFile = new ClassPathResource("static/images").getFile();
+				File savedFile = new ClassPathResource("app/src/main/resources/static/images").getFile();
 
 				// make a full path to access the file
 				Path path = Paths.get(savedFile.getAbsolutePath() + File.separator + file.getOriginalFilename());
@@ -302,7 +302,7 @@ public class UserController {
 		for (Contact contact : contacts) {
 			try {
 				
-			 File filepath = new ClassPathResource("static/images").getFile(); 
+			 File filepath = new ClassPathResource("app/src/main/resources/static/images").getFile(); 
 			  File f = new File(filepath, contact.getImage());
 			  f.delete();
 			}
