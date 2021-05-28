@@ -87,7 +87,7 @@
 							<th scope="row" th:text="${status.count}"></th>
 
 							<td scope="row"><img class="profile_photo"
-								th:src="@{'app/src/main/resources/static/images/default.png'}" alt="profile_photo" /> <span
+								th:src="@{'/images/'+ ${c.image}}" alt="profile_photo" /> <span
 								th:text="${c.name}"></span></td>
 
 
