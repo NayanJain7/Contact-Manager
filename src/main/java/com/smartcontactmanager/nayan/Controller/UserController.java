@@ -84,6 +84,9 @@ public class UserController {
 			String username = principal.getName();
 
 			User user = userRepo.getUserByUserName(username);
+			
+			System.out.println("-----------Inside Process Contact--------");
+			
 
 			if (file.isEmpty()) {
 				contact.setImage("default.png");
@@ -92,6 +95,10 @@ public class UserController {
 			else {
 
 				String filename = file.getOriginalFilename();
+				
+				System.out.println("-------------------------------------------------");
+				System.out.println("filename is =========>"+filename);
+				System.out.println("-------------------------------------------------");
 
 				contact.setImage(filename);
 
