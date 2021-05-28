@@ -95,10 +95,18 @@ public class UserController {
 
 				contact.setImage(filename);
 
-				File savedFile = new ClassPathResource("app/src/main/resources/static/images").getFile();
+				File savedFile = new ClassPathResource("resources/static/images").getFile();
+				
+				System.out.println("-------------------------------------------------");
+				System.out.println("savedFile is =========>"+savedFile);
+				System.out.println("-------------------------------------------------");
 
 				// make a full path to access the file
 				Path path = Paths.get(savedFile.getAbsolutePath() + File.separator + filename);
+				
+				System.out.println("-------------------------------------------------");
+				System.out.println("Path is =========>"+path);
+				System.out.println("-------------------------------------------------");
 
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
